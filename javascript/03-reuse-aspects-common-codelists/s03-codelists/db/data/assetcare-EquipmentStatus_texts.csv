@@ -1,0 +1,4 @@
+code,locale,name,descr
+OP,de,In Betrieb,Anlage laeuft normal
+DN,de,Ausser Betrieb,Anlage ist nicht betriebsbereit
+DC,de,Stillgelegt,Anlage wurde ausgemustert

@@ -1,0 +1,18 @@
+namespace assetcare;
+using { [[PH:import the reusable aspects cuid and managed]]cuid, managed[[/PH]] } from '@sap/cds/common';
+
+/**
+ * Equipment now reuses two standard aspects instead of hand-rolling its own key and
+ * audit fields: cuid adds `key ID : UUID`, managed adds createdAt/createdBy/
+ * modifiedAt/modifiedBy, filled automatically.
+ */
+entity Equipment : [[PH:apply the cuid and managed aspects]]cuid, managed[[/PH]] {
+  tag      : String;
+  model    : String;
+  serialNo : String;
+}
+
+entity Manufacturer : [[PH:apply the cuid and managed aspects]]cuid, managed[[/PH]] {
+  name    : String;
+  country : String;
+}

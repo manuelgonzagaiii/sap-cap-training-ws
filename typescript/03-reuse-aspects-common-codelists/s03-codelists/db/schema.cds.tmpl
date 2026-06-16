@@ -1,0 +1,30 @@
+namespace assetcare;
+using { cuid, managed, Currency } from '@sap/cds/common';
+
+entity Equipment : cuid, managed {
+  tag      : String;
+  model    : String;
+  serialNo : String;
+  [[PH:link Equipment to its status via an association to EquipmentStatus]]status : Association to EquipmentStatus[[/PH]];
+}
+
+entity Manufacturer : cuid, managed {
+  name    : String;
+  country : String;
+}
+
+entity SparePart : cuid, managed {
+  partNo   : String;
+  name     : String;
+  stock    : Integer;
+  price    : Decimal;
+  currency : Currency;
+}
+
+/**
+ * A code list of equipment statuses. Reusing sap.common.CodeList contributes `name` and
+ * `descr` as LOCALIZED texts, so the labels can be translated per language. We add the key.
+ */
+entity EquipmentStatus : [[PH:reuse the standard code list aspect, sap.common.CodeList]]sap.common.CodeList[[/PH]] {
+  key code : String(20);
+}

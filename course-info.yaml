@@ -1,36 +1,27 @@
 type: marketplace
-title: "SAP CAP — Guided Project (AssetCare: Asset & Maintenance Management)"
+title: SAP CAP — Guided Project (Crew Timesheet)
 language: English
 summary: |-
-  A hands-on, guided project that takes you from the very basics of the SAP Cloud
-  Application Programming Model (CAP) to its most advanced and rarely-used features.
-  You build one real SAP-style business application — AssetCare, an asset and
-  maintenance management app (equipment, work orders, technicians, spare parts,
-  inspections) — growing it lesson by lesson on the Node.js stack.
+  A hands-on, guided project that builds one real SAP back end — Crew Timesheet —
+  with SAP CAP on Node.js, from first principles to advanced features: CDS
+  modelling, custom logic, drafts, PostgreSQL, external-service integration, the
+  transactional outbox, MTA packaging, UI5 Tooling and testing. Everything runs
+  locally with free tooling; no SAP BTP, S/4HANA or paid systems are required.
 
-  Two parallel tracks are provided: JavaScript and TypeScript. Everything runs on
-  free, open-source tooling a trainee can run locally — CAP with SQLite for the fast
-  inner loop and PostgreSQL as the deploy target. No S/4HANA and no paid SAP BTP
-  satellite systems are required; where a real app would use one, the course uses a
-  free local stand-in.
-
-  Prerequisites: solid JavaScript and (for the TS track) TypeScript. These languages
-  are NOT taught here.
+  Prerequisites: solid JavaScript. JavaScript is NOT taught here — this course
+  teaches SAP CAP.
 vendor:
   name: SAP CAP Training
   email: manuelgonzagaiii@gmail.com
 programming_language: JavaScript
 content:
   - Welcome
-  - javascript
-  - typescript
 tags:
   - SAP CAP
   - CDS
   - OData
+  - PostgreSQL
   - Node.js
-  - TypeScript
-  - Fiori
 additional_files:
   - name: package.json
   - name: package-lock.json

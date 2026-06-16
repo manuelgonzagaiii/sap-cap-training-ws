@@ -1,5 +1,5 @@
 type: framework
-custom_name: "Local PostgreSQL persistence"
+custom_name: Local PostgreSQL persistence
 content:
   - s01-seed-data
   - s02-configure-database
