@@ -1,5 +1,0 @@
-type: theory
-custom_name: Overview and roadmap
-files:
-  - name: task.md
-    visible: true

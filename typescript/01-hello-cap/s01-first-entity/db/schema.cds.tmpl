@@ -1,0 +1,12 @@
+namespace [[PH:the project namespace - the course uses assetcare]]assetcare[[/PH]];
+
+/**
+ * Equipment is a single physical asset AssetCare looks after - a pump, a motor,
+ * a conveyor. The whole application is built around it.
+ */
+entity [[PH:the entity name - the course builds on Equipment]]Equipment[[/PH]] {
+  [[PH:a key element: the key modifier, a name, and a type - e.g. key ID : UUID]]key ID   : UUID[[/PH]];
+  tag      : String;   // human-facing asset number, e.g. EQ-1001
+  model    : String;
+  serialNo : String;
+}

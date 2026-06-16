@@ -1,6 +1,5 @@
 content:
   - 00-typescript-setup
-  - 01-hello-cap
   - 02-postgres-persistence
   - 03-reuse-aspects-common-codelists
   - 04-associations-compositions

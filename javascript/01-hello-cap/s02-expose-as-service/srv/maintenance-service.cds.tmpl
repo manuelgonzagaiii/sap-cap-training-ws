@@ -1,0 +1,10 @@
+using { [[PH:the namespace to import from the data model]]assetcare[[/PH]] } from '../db/schema';
+
+/**
+ * A service is a facade. It chooses which entities to expose, and how, without
+ * touching the domain model. CAP serves it as OData V4 with full CRUD and no
+ * handler code.
+ */
+service [[PH:name the service MaintenanceService]]MaintenanceService[[/PH]] {
+  entity Equipment as [[PH:expose assetcare.Equipment as a read/write projection]]projection on assetcare.Equipment[[/PH]];
+}
