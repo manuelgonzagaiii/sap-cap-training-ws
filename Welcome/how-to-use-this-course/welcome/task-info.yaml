@@ -1,0 +1,5 @@
+type: theory
+custom_name: Start here
+files:
+  - name: task.md
+    visible: true

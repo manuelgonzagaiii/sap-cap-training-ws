@@ -1,0 +1,36 @@
+/.idea
+/.junie
+/.claude
+
+# OS
+.DS_Store
+
+# Node
+node_modules/
+npm-debug.log*
+yarn-error.log*
+
+# CAP build output and local database artifacts
+gen/
+*.sqlite
+*.sqlite3
+*.db
+.cdsrc-private.json
+default-*.json
+
+# TypeScript build / generated model types
+*.tsbuildinfo
+@cds-models/
+
+# Test / coverage
+coverage/
+.nyc_output/
+
+# Authoring policy — kept out of the shipped/published course (see CLAUDE.md A1)
+/CLAUDE.md
+
+# EduTools generated artifacts (course archives + preview/study projects)
+.coursecreator/
+course_preview*/
+*.zip
+*-ijignore

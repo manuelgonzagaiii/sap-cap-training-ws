@@ -1,0 +1,99 @@
+{
+  "capstone": "AssetCare",
+  "subject": "SAP CAP (Node.js stack)",
+  "cds_version": "9.9.x",
+  "node_version": "20+ (22/24 LTS recommended)",
+  "tracks": ["javascript", "typescript"],
+  "note": "Source of truth for the course outline. scaffold-course.mjs and validate-course.mjs read this. Each lesson currently has a single 'overview' theory stage (skeleton); hands-on edu stages are added per lesson during population.",
+  "typescript_prologue": {
+    "slug": "typescript-setup",
+    "title": "TypeScript Setup and Tooling",
+    "summary": "Establish the TypeScript toolchain before mirroring the JavaScript curriculum: cds add typescript, @cap-js/cds-types, cds-typer and the @cds-models folder, and cds watch running TS via tsx.",
+    "cap_features": ["cds add typescript", "@cap-js/cds-types", "cds-typer (@cds-models, #cds-models imports)", "cds watch + tsx", "tsconfig for CAP"],
+    "tasks": [
+      { "slug": "overview", "title": "Overview and roadmap", "task_type": "theory" }
+    ]
+  },
+  "phases": [
+    {
+      "phase_id": "A",
+      "phase_title": "Foundations and domain modelling",
+      "milestone": "A runnable AssetCare service on a local database with a real domain model.",
+      "lessons": [
+        { "slug": "hello-cap", "title": "Hello CAP", "summary": "Scaffold a CAP project, model one entity, and get a zero-code OData V4 service from the model alone.", "cap_features": ["cds init / cds add", "CDS entity and service (CDL)", "generic service providers (zero-code OData V4)", "cds watch", "namespaces"], "tasks": [ { "slug": "overview", "title": "Overview and roadmap", "task_type": "theory" } ] },
+        { "slug": "postgres-persistence", "title": "Local PostgreSQL persistence", "summary": "Move AssetCare onto a local PostgreSQL database, generate DDL, deploy, and seed data from CSV.", "cap_features": ["database services", "@cap-js/postgres", "cds deploy --to postgres", "CSV seed data (db/data)", "cds env requires.db", "@cap-js/sqlite for the fast loop"], "tasks": [ { "slug": "overview", "title": "Overview and roadmap", "task_type": "theory" } ] },
+        { "slug": "reuse-aspects-common-codelists", "title": "Reuse aspects, common types and CodeLists", "summary": "Refactor master data onto cuid/managed, currencies, and a translatable status CodeList.", "cap_features": ["@sap/cds/common (managed, cuid, Country, Currency)", "sap.common.CodeList", "aspects and aspect composition", "localized CodeList texts (CSV)"], "tasks": [ { "slug": "overview", "title": "Overview and roadmap", "task_type": "theory" } ] },
+        { "slug": "associations-compositions", "title": "Associations and compositions", "summary": "Model the relational graph and document structure: equipment to manufacturer/location, work order with contained items and inspections.", "cap_features": ["managed associations (to-one/to-many)", "compositions of many (header-detail)", "managed/inline compositions", "deep read via $expand", "ON-condition associations"], "tasks": [ { "slug": "overview", "title": "Overview and roadmap", "task_type": "theory" } ] },
+        { "slug": "projections-calculated-elements", "title": "Projections, calculated and virtual elements", "summary": "Expose lean read models and add model-computed fields.", "cap_features": ["service projections (as projection on / as select from)", "calculated elements (on-read and stored)", "virtual elements", "curated read models"], "tasks": [ { "slug": "overview", "title": "Overview and roadmap", "task_type": "theory" } ] },
+        { "slug": "cql-queries", "title": "Querying with CQL and cds.ql", "summary": "Write programmatic queries and a transactional deep-insert with the query API.", "cap_features": ["CQL / cds.ql (SELECT/INSERT/UPSERT/UPDATE/DELETE)", "CQN", "deep insert/upsert", "transactions (cds.tx)", "cds repl query mode"], "tasks": [ { "slug": "overview", "title": "Overview and roadmap", "task_type": "theory" } ] }
+      ]
+    },
+    {
+      "phase_id": "B",
+      "phase_title": "Business logic and validation",
+      "milestone": "Domain rules, validation and custom operations layered on the generic providers.",
+      "lessons": [
+        { "slug": "custom-handlers", "title": "Custom business logic: event handlers", "summary": "Add domain rules with before/on/after handlers and the request context.", "cap_features": ["custom handlers (before/on/after)", "req object and request context", "cds lifecycle events", "handler registration patterns"], "tasks": [ { "slug": "overview", "title": "Overview and roadmap", "task_type": "theory" } ] },
+        { "slug": "input-validation-constraints", "title": "Input validation and declarative constraints", "summary": "Enforce valid work orders declaratively with friendly, localizable errors.", "cap_features": ["@mandatory, @assert.range, @assert.format", "@assert.target", "declarative @assert (CASE expressions)", "custom and i18n validation messages"], "tasks": [ { "slug": "overview", "title": "Overview and roadmap", "task_type": "theory" } ] },
+        { "slug": "actions-functions", "title": "Custom actions and functions", "summary": "Add RPC-style operations beyond CRUD, bound and unbound.", "cap_features": ["bound and unbound actions/functions", "actions in aspects", "typed JS API for operations", "parameters and return types", "media-returning functions"], "tasks": [ { "slug": "overview", "title": "Overview and roadmap", "task_type": "theory" } ] }
+      ]
+    },
+    {
+      "phase_id": "C",
+      "phase_title": "Security and the Fiori UI",
+      "milestone": "A secured app with a Fiori draft editing experience and localization.",
+      "lessons": [
+        { "slug": "auth", "title": "Authentication and authorization", "summary": "Add role-based and instance-based access control, tested with mock users.", "cap_features": ["@requires (role gating)", "@restrict (grant/to/where)", "instance-based access control ($user)", "pseudo-roles", "mocked auth users in dev"], "tasks": [ { "slug": "overview", "title": "Overview and roadmap", "task_type": "theory" } ] },
+        { "slug": "fiori-drafts", "title": "Fiori drafts", "summary": "Make work orders draft-enabled: create, save-as-draft, activate, with draft handlers.", "cap_features": ["@odata.draft.enabled and draft choreography", "lean draft and .drafts handlers", "draft locks and garbage collection", "@fiori.draft.enabled (localized data)"], "tasks": [ { "slug": "overview", "title": "Overview and roadmap", "task_type": "theory" } ] },
+        { "slug": "fiori-elements-ui", "title": "Serving Fiori elements UIs", "summary": "Generate a list and object page from CDS UI annotations, with value helps.", "cap_features": ["Fiori UI annotations (LineItem, SelectionFields, HeaderInfo, Facets, FieldGroup)", "value helps and TextArrangement", "list and object report pages", "annotation files in app/"], "tasks": [ { "slug": "overview", "title": "Overview and roadmap", "task_type": "theory" } ] },
+        { "slug": "localization-i18n", "title": "Localization and i18n", "summary": "Translate data, labels, CodeLists and messages for a multilingual UI.", "cap_features": ["localized String elements and _texts", "i18n text bundles (.properties / CSV)", "externalized annotation texts ({i18n>...})", "normalized locales and fallback"], "tasks": [ { "slug": "overview", "title": "Overview and roadmap", "task_type": "theory" } ] }
+      ]
+    },
+    {
+      "phase_id": "D",
+      "phase_title": "Rich data and search",
+      "milestone": "Media, search, hierarchies, time-effective data and analytics over the model.",
+      "lessons": [
+        { "slug": "media-attachments", "title": "Media and attachments", "summary": "Stream inspection photos and a generated report; add @cap-js/attachments.", "cap_features": ["LargeBinary with @Core.MediaType", "@Core.ContentDisposition", "media streaming (upload/download)", "media in actions/functions", "@cap-js/attachments (DB and MinIO/S3)"], "tasks": [ { "slug": "overview", "title": "Overview and roadmap", "task_type": "theory" } ] },
+        { "slug": "search", "title": "Full-text and fuzzy search", "summary": "Enable $search across master data with controlled scope and ranking.", "cap_features": ["OData $search", "@cds.search (include/exclude, across associations)", "@Search.ranking and fuzziness"], "tasks": [ { "slug": "overview", "title": "Overview and roadmap", "task_type": "theory" } ] },
+        { "slug": "recursive-hierarchies", "title": "Recursive hierarchies", "summary": "Model functional locations as a tree and render a Fiori TreeTable.", "cap_features": ["self-associations", "@hierarchy", "@Aggregation.RecursiveHierarchy", "Fiori TreeTable / sibling order and move"], "tasks": [ { "slug": "overview", "title": "Overview and roadmap", "task_type": "theory" } ] },
+        { "slug": "temporal-data", "title": "Temporal data", "summary": "Model dated warranty terms and query 'under warranty as of date' via time travel.", "cap_features": ["temporal aspect / @cds.valid.from/to", "time slices and keys (ID, validFrom)", "as-of-now and time-travel queries", "separate temporal details"], "tasks": [ { "slug": "overview", "title": "Overview and roadmap", "task_type": "theory" } ] },
+        { "slug": "analytics", "title": "Analytics: maintenance KPIs", "summary": "Compute KPIs with grouping, aggregation over associations and window functions.", "cap_features": ["OData $apply (groupby/aggregate)", "aggregation over associations", "SQL window functions (.over)", "analytical projections / KPIs"], "tasks": [ { "slug": "overview", "title": "Overview and roadmap", "task_type": "theory" } ] }
+      ]
+    },
+    {
+      "phase_id": "E",
+      "phase_title": "Integration and eventing",
+      "milestone": "An event-driven AssetCare integrated with an external (mocked) ERP and multiple protocols.",
+      "lessons": [
+        { "slug": "background-jobs", "title": "Background jobs and scheduling", "summary": "Auto-generate due work orders from maintenance plans with a recurring detached job.", "cap_features": ["cds.spawn (detached transactions, every)", "privileged/tenant context override", "job events and stopping jobs", "graceful shutdown hooks"], "tasks": [ { "slug": "overview", "title": "Overview and roadmap", "task_type": "theory" } ] },
+        { "slug": "messaging-events", "title": "Messaging and events", "summary": "Emit WorkOrderCompleted reliably via the outbox; subscribe and react.", "cap_features": ["declaring CDS events", "srv.emit / on", "transactional outbox (cds.outboxed/unboxed)", "brokers (file-based, Event Mesh, Event Hub, Redis)", "low-level topics"], "tasks": [ { "slug": "overview", "title": "Overview and roadmap", "task_type": "theory" } ] },
+        { "slug": "remote-services", "title": "Remote services", "summary": "Import a mock ERP API and consume it to refresh equipment master; mock it locally.", "cap_features": ["cds import (EDMX to CSN)", "consuming remote OData (cds.connect.to)", "mocking remote services locally", "remote media elements", "receiving ERP events"], "tasks": [ { "slug": "overview", "title": "Overview and roadmap", "task_type": "theory" } ] },
+        { "slug": "protocols-api-surface", "title": "Protocols and API surface", "summary": "Expose the service over OData, REST and GraphQL; publish OpenAPI; export a client.", "cap_features": ["@protocol/@odata/@rest/@graphql/@path/@endpoints", "OData V2 vs V4 adapters", "@cap-js/graphql", "OpenAPI / Swagger UI", "cds export (API client package)"], "tasks": [ { "slug": "overview", "title": "Overview and roadmap", "task_type": "theory" } ] },
+        { "slug": "error-handling", "title": "Error handling and messages", "summary": "Return clear, localized, collected errors from the maintenance workflows.", "cap_features": ["req.error / req.reject / req.warn", "multiple-error collection", "i18n error/message bundles", "error sanitization config"], "tasks": [ { "slug": "overview", "title": "Overview and roadmap", "task_type": "theory" } ] }
+      ]
+    },
+    {
+      "phase_id": "F",
+      "phase_title": "Types, quality and governance",
+      "milestone": "A typed, tested, audited and privacy-aware AssetCare.",
+      "lessons": [
+        { "slug": "typescript-typed-development", "title": "TypeScript and typed development", "summary": "Type the handlers with generated model types and run under tsx (JSDoc equivalent in the JS track).", "cap_features": ["cds-typer (typed entities)", "@cap-js/cds-types", "cds watch with tsx", "typed handlers, enums and arrays"], "tasks": [ { "slug": "overview", "title": "Overview and roadmap", "task_type": "theory" } ] },
+        { "slug": "testing", "title": "Testing CAP applications", "summary": "Write unit and integration tests with cds.test; run them with Vitest.", "cap_features": ["cds.test (@cap-js/cds-test)", "cds.test.in()", "Vitest (recommended) / Jest / Mocha", "integration tests with profiles and resolved bindings"], "tasks": [ { "slug": "overview", "title": "Overview and roadmap", "task_type": "theory" } ] },
+        { "slug": "change-tracking", "title": "Change tracking and audit history", "summary": "Record a human-readable change history on critical records and show it in the UI.", "cap_features": ["@cap-js/change-tracking (@changelog / changeTracked)", "tracked entities and fields", "change-history UI facet", "reacting to change events"], "tasks": [ { "slug": "overview", "title": "Overview and roadmap", "task_type": "theory" } ] },
+        { "slug": "data-privacy", "title": "Data privacy: technician personal data", "summary": "Classify personal data, enable audit logging, and expose a PDM endpoint.", "cap_features": ["@PersonalData (EntitySemantics, DataSubjectRole, FieldSemantics)", "IsPotentiallyPersonal / Sensitive", "@cap-js/audit-logging", "Personal Data Management (PDM)", "Data Retention"], "tasks": [ { "slug": "overview", "title": "Overview and roadmap", "task_type": "theory" } ] }
+      ]
+    },
+    {
+      "phase_id": "G",
+      "phase_title": "SaaS and delivery",
+      "milestone": "A multitenant, extensible, deployable AssetCare SaaS.",
+      "lessons": [
+        { "slug": "feature-toggles", "title": "Feature toggles and per-tenant features", "summary": "Gate an optional predictive-maintenance feature per tenant/user.", "cap_features": ["feature toggles (fts/ folders)", "extend entities/UI behind a feature", "per-user/per-tenant feature vectors", "feature-toggled logic"], "tasks": [ { "slug": "overview", "title": "Overview and roadmap", "task_type": "theory" } ] },
+        { "slug": "multitenancy", "title": "Multitenancy", "summary": "Turn AssetCare into a SaaS with tenant isolation and onboarding, tested locally.", "cap_features": ["cds add multitenancy / @sap/cds-mtxs", "MTX sidecar services", "tenant subscribe/unsubscribe and provisioning", "tenant-isolated databases", "lifecycle hooks"], "tasks": [ { "slug": "overview", "title": "Overview and roadmap", "task_type": "theory" } ] },
+        { "slug": "extensibility", "title": "Extensibility", "summary": "Let a tenant add custom equipment fields and UI without forking the base app.", "cap_features": ["tenant extensions (extend entities/services)", "ExtensibilityService", "extension projects", "extending array-valued UI annotations", "extension data and semantic IDs"], "tasks": [ { "slug": "overview", "title": "Overview and roadmap", "task_type": "theory" } ] },
+        { "slug": "deployment-btp", "title": "Productive deployment to SAP BTP", "summary": "Package for production (CF or Kyma), bind services, and plan a safe schema migration.", "cap_features": ["cds add hana,xsuaa,mta / kyma / approuter", "cds build and cds up (CF default / Kyma)", "service bindings (cds bind)", "schema evolution (cds deploy --script)", "GitHub Actions facet"], "tasks": [ { "slug": "overview", "title": "Overview and roadmap", "task_type": "theory" } ] }
+      ]
+    }
+  ]
+}
