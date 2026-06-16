@@ -1,0 +1,6 @@
+using { MaintenanceService } from './maintenance-service';
+
+// Externalize labels: reference bundle keys instead of hard-coding text, so the UI can be
+// translated without touching the model.
+annotate MaintenanceService.WorkOrder with @title: [[PH:reference the WorkOrder label from the i18n bundle, e.g. '{i18n>WorkOrder}']]'{i18n>WorkOrder}'[[/PH]];
+annotate MaintenanceService.WorkOrder:description with @title: [[PH:reference the Description label from the i18n bundle]]'{i18n>Description}'[[/PH]];

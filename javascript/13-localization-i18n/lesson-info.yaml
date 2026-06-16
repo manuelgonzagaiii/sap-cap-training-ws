@@ -1,3 +1,6 @@
+type: framework
 custom_name: Localization and i18n
 content:
-  - s01-overview
+  - s02-localized-data
+  - s01-text-bundle
+is_template_based: false

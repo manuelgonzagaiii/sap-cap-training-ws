@@ -1,0 +1,45 @@
+const cds = require('@sap/cds');
+
+class MaintenanceService extends cds.ApplicationService {
+  async init() {
+
+    this.before('CREATE', 'WorkOrder', (req) => {
+      if (!req.data.orderNo) req.data.orderNo = 'WO-' + Date.now();
+    });
+    this.after('READ', 'Equipment', async (rows) => {
+      for (const row of Array.isArray(rows) ? rows : [rows]) {
+        if (!row) continue;
+        const wos = await SELECT.from('assetcare.WorkOrder').where({ equipment_ID: row.ID });
+        row.openWorkOrders = wos.length;
+      }
+    });
+    this.before(['CREATE', 'UPDATE'], 'SparePart', (req) => {
+      if (req.data.stock != null && req.data.stock < 0) req.reject(400, 'Stock cannot be negative');
+    });
+    this.on('completeWorkOrder', 'WorkOrder', async (req) => {
+      await UPDATE(req.subject).with({ completed: true });
+      return req.subject;
+    });
+    this.on('adjustStock', 'SparePart', async (req) => {
+      const part = await SELECT.one.from(req.subject);
+      const newStock = (part.stock ?? 0) + req.data.by;
+      await UPDATE(req.subject).with({ stock: newStock });
+      return newStock;
+    });
+    this.on('lowStockCount', async () => {
+      const rows = await SELECT.from('assetcare.SparePart').where('stock < reorderLevel');
+      return rows.length;
+    });
+
+    // Draft-specific handler (lean draft): runs only when a NEW work-order DRAFT is created,
+    // targeted with the '.drafts' suffix. The active-entity handlers above are untouched -
+    // this is the lean-draft separation of active vs draft logic.
+    this.before('NEW', 'WorkOrder.drafts', (req) => {
+      if (!req.data.description) req.data.description = 'New work order';
+    });
+
+    await super.init();
+  }
+}
+
+module.exports = MaintenanceService;

@@ -1,3 +1,6 @@
-custom_name: Authentication and authorization
+type: framework
+custom_name: "Authentication and authorization"
 content:
-  - s01-overview
+  - s01-rbac
+  - s02-instance-based
+is_template_based: false

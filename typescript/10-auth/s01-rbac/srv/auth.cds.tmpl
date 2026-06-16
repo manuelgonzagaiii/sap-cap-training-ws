@@ -1,0 +1,10 @@
+using { MaintenanceService } from './maintenance-service';
+
+// Require an authenticated user for the whole service: anonymous requests get 401.
+[[PH:require an authenticated user for the whole MaintenanceService with @(requires: 'authenticated-user')]]annotate MaintenanceService with @(requires: 'authenticated-user')[[/PH]];
+
+// Role-based access on spare parts: anyone signed in may read; only managers may change.
+[[PH:restrict SparePart - grant READ to authenticated-user, and write operations to the Maintenance.Manager role]]annotate MaintenanceService.SparePart with @(restrict: [
+  { grant: 'READ', to: 'authenticated-user' },
+  { grant: ['CREATE', 'UPDATE', 'DELETE'], to: 'Maintenance.Manager' }
+])[[/PH]];

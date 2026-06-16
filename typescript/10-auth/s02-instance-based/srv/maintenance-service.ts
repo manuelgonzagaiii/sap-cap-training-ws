@@ -1,0 +1,44 @@
+import cds from '@sap/cds';
+const { SELECT, UPDATE } = cds.ql;
+
+export default class MaintenanceService extends cds.ApplicationService {
+  async init() {
+
+    // (from Lesson 7)
+    this.before('CREATE', 'WorkOrder', (req) => {
+      if (!req.data.orderNo) req.data.orderNo = 'WO-' + Date.now();
+    });
+    this.after('READ', 'Equipment', async (rows) => {
+      for (const row of Array.isArray(rows) ? rows : [rows]) {
+        if (!row) continue;
+        const wos = await SELECT.from('assetcare.WorkOrder').where({ equipment_ID: row.ID });
+        row.openWorkOrders = wos.length;
+      }
+    });
+    this.before(['CREATE', 'UPDATE'], 'SparePart', (req) => {
+      if (req.data.stock != null && req.data.stock < 0) req.reject(400, 'Stock cannot be negative');
+    });
+
+    // (from the previous stage)
+    this.on('completeWorkOrder', 'WorkOrder', async (req) => {
+      await UPDATE(req.subject).with({ completed: true });
+      return req.subject;
+    });
+
+    // Bound action with a parameter and a return value.
+    this.on('adjustStock', 'SparePart', async (req) => {
+      const part: any = await SELECT.one.from(req.subject);
+      const newStock = (part.stock ?? 0) + req.data.by;
+      await UPDATE(req.subject).with({ stock: newStock });
+      return newStock;
+    });
+
+    // Unbound function.
+    this.on('lowStockCount', async () => {
+      const rows = await SELECT.from('assetcare.SparePart').where('stock < reorderLevel');
+      return rows.length;
+    });
+
+    await super.init();
+  }
+}
