@@ -1,138 +1,37 @@
 type: marketplace
-title: SAP CAP — Guided Project (Crew Timesheet)
+title: "SAP CAP — Guided Project (AssetCare: Asset & Maintenance Management)"
 language: English
 summary: |-
-  A hands-on, guided project that builds one real SAP back end — Crew Timesheet —
-  with SAP CAP on Node.js, from first principles to advanced features: CDS
-  modelling, custom logic, drafts, PostgreSQL, external-service integration, the
-  transactional outbox, MTA packaging, UI5 Tooling and testing. Everything runs
-  locally with free tooling; no SAP BTP, S/4HANA or paid systems are required.
+  A hands-on, guided project that takes you from the very basics of the SAP Cloud
+  Application Programming Model (CAP) to its most advanced and rarely-used features.
+  You build one real SAP-style business application — AssetCare, an asset and
+  maintenance management app (equipment, work orders, technicians, spare parts,
+  inspections) — growing it lesson by lesson on the Node.js stack.
 
-  Prerequisites: solid JavaScript. JavaScript is NOT taught here — this course
-  teaches SAP CAP.
+  Two parallel tracks are provided: JavaScript and TypeScript. Everything runs on
+  free, open-source tooling a trainee can run locally — CAP with SQLite for the fast
+  inner loop and PostgreSQL as the deploy target. No S/4HANA and no paid SAP BTP
+  satellite systems are required; where a real app would use one, the course uses a
+  free local stand-in.
+
+  Prerequisites: solid JavaScript and (for the TS track) TypeScript. These languages
+  are NOT taught here.
 vendor:
   name: SAP CAP Training
   email: manuelgonzagaiii@gmail.com
 programming_language: JavaScript
 content:
   - Welcome
+  - javascript
+  - typescript
 tags:
   - SAP CAP
   - CDS
   - OData
-  - PostgreSQL
   - Node.js
+  - TypeScript
+  - Fiori
 additional_files:
   - name: package.json
   - name: package-lock.json
-  - name: javascript/04-associations-compositions/s02-work-order-composition/db/schema.cds.tmpl
-  - name: javascript/04-associations-compositions/s02-work-order-composition/srv/maintenance-service.cds.tmpl
-  - name: javascript/04-associations-compositions/s02-work-order-composition/test/test.js
-  - name: javascript/04-associations-compositions/s03-deep-reads/db/schema.cds.tmpl
-  - name: javascript/04-associations-compositions/s03-deep-reads/srv/maintenance-service.cds
-  - name: javascript/04-associations-compositions/s03-deep-reads/test/test.js
-  - name: javascript/04-associations-compositions/s03-deep-reads/db/data/assetcare-WorkOrder.csv
-  - name: javascript/04-associations-compositions/s03-deep-reads/db/data/assetcare-WorkOrderItem.csv
-  - name: javascript/04-associations-compositions/s02-work-order-composition/db/schema.cds
-  - name: javascript/04-associations-compositions/s03-deep-reads/db/data/assetcare-Equipment.csv
-  - name: javascript/04-associations-compositions/s02-work-order-composition/srv/maintenance-service.cds
-  - name: javascript/04-associations-compositions/s02-work-order-composition/db/data/assetcare-Equipment.csv
-  - name: javascript/04-associations-compositions/s03-deep-reads/db/schema.cds
-  - name: javascript/04-associations-compositions/s01-associations/db/schema.cds
-  - name: javascript/05-projections-calculated-elements/s01-calculated-on-read/test/test.js
-  - name: javascript/05-projections-calculated-elements/s01-calculated-on-read/db/schema.cds.tmpl
-  - name: javascript/05-projections-calculated-elements/s02-stored-and-assoc/db/schema.cds.tmpl
-  - name: javascript/05-projections-calculated-elements/s02-stored-and-assoc/test/test.js
-  - name: javascript/05-projections-calculated-elements/s03-virtual-and-projections/srv/maintenance-service.cds.tmpl
-  - name: javascript/05-projections-calculated-elements/s03-virtual-and-projections/test/test.js
-  - name: javascript/05-projections-calculated-elements/s03-virtual-and-projections/srv/maintenance-service.cds
-  - name: javascript/05-projections-calculated-elements/s02-stored-and-assoc/db/schema.cds
-  - name: javascript/05-projections-calculated-elements/s01-calculated-on-read/db/schema.cds
-  - name: javascript/05-projections-calculated-elements/s03-virtual-and-projections/db/schema.cds
-  - name: javascript/06-cql-queries/s02-writes/queries.js.tmpl
-  - name: javascript/06-cql-queries/s02-writes/test/test.js
-  - name: javascript/06-cql-queries/s03-deep-and-tx/queries.js.tmpl
-  - name: javascript/06-cql-queries/s03-deep-and-tx/test/test.js
-  - name: javascript/06-cql-queries/s01-reads/queries.js
-  - name: javascript/06-cql-queries/s03-deep-and-tx/queries.js
-  - name: javascript/06-cql-queries/s02-writes/queries.js
-  - name: typescript/00-typescript-setup/s01-typescript-config/tsconfig.json.tmpl
-  - name: typescript/00-typescript-setup/s01-typescript-config/test/test.js
-  - name: typescript/06-cql-queries/s01-reads/queries.ts.tmpl
-  - name: typescript/06-cql-queries/s01-reads/test/test.js
-  - name: typescript/06-cql-queries/s02-writes/queries.ts.tmpl
-  - name: typescript/06-cql-queries/s02-writes/test/test.js
-  - name: typescript/06-cql-queries/s03-deep-and-tx/queries.ts.tmpl
-  - name: typescript/06-cql-queries/s03-deep-and-tx/test/test.js
-  - name: typescript/06-cql-queries/s02-writes/tsconfig.json
-  - name: typescript/06-cql-queries/s02-writes/queries.ts
-  - name: typescript/06-cql-queries/s01-reads/tsconfig.json
-  - name: typescript/06-cql-queries/s01-reads/queries.ts
-  - name: typescript/06-cql-queries/s03-deep-and-tx/tsconfig.json
-  - name: typescript/06-cql-queries/s03-deep-and-tx/queries.ts
-  - name: typescript/00-typescript-setup/s01-typescript-config/tsconfig.json
-  - name: javascript/06-cql-queries/s02-writes/queries.js.tmpl
-  - name: javascript/06-cql-queries/s02-writes/test/test.js
-  - name: javascript/06-cql-queries/s03-deep-and-tx/queries.js.tmpl
-  - name: javascript/06-cql-queries/s03-deep-and-tx/test/test.js
-  - name: javascript/06-cql-queries/s01-reads/queries.js
-  - name: javascript/06-cql-queries/s03-deep-and-tx/queries.js
-  - name: javascript/06-cql-queries/s02-writes/queries.js
-  - name: typescript/00-typescript-setup/s01-typescript-config/tsconfig.json.tmpl
-  - name: typescript/00-typescript-setup/s01-typescript-config/test/test.js
-  - name: typescript/06-cql-queries/s01-reads/queries.ts.tmpl
-  - name: typescript/06-cql-queries/s01-reads/test/test.js
-  - name: typescript/06-cql-queries/s02-writes/queries.ts.tmpl
-  - name: typescript/06-cql-queries/s02-writes/test/test.js
-  - name: typescript/06-cql-queries/s03-deep-and-tx/queries.ts.tmpl
-  - name: typescript/06-cql-queries/s03-deep-and-tx/test/test.js
-  - name: typescript/06-cql-queries/s02-writes/tsconfig.json
-  - name: typescript/06-cql-queries/s02-writes/queries.ts
-  - name: typescript/06-cql-queries/s01-reads/tsconfig.json
-  - name: typescript/06-cql-queries/s01-reads/queries.ts
-  - name: typescript/06-cql-queries/s03-deep-and-tx/tsconfig.json
-  - name: typescript/06-cql-queries/s03-deep-and-tx/queries.ts
-  - name: typescript/00-typescript-setup/s01-typescript-config/tsconfig.json
-  - name: javascript/07-custom-handlers/s01-before-defaults/srv/maintenance-service.js.tmpl
-  - name: javascript/07-custom-handlers/s01-before-defaults/test/test.js
-  - name: javascript/07-custom-handlers/s02-after-and-guards/srv/maintenance-service.js.tmpl
-  - name: javascript/07-custom-handlers/s02-after-and-guards/test/test.js
-  - name: typescript/07-custom-handlers/s01-before-defaults/test/test.js
-  - name: typescript/07-custom-handlers/s01-before-defaults/srv/maintenance-service.ts.tmpl
-  - name: typescript/07-custom-handlers/s02-after-and-guards/srv/maintenance-service.ts.tmpl
-  - name: typescript/07-custom-handlers/s02-after-and-guards/test/test.js
-  - name: javascript/07-custom-handlers/s02-after-and-guards/srv/maintenance-service.js
-  - name: typescript/07-custom-handlers/s01-before-defaults/srv/maintenance-service.ts
-  - name: typescript/07-custom-handlers/s02-after-and-guards/srv/maintenance-service.ts
-  - name: javascript/07-custom-handlers/s01-before-defaults/srv/maintenance-service.js
-  - name: javascript/08-input-validation-constraints/s01-declarative-annotations/db/schema.cds.tmpl
-  - name: javascript/08-input-validation-constraints/s01-declarative-annotations/test/test.js
-  - name: javascript/08-input-validation-constraints/s02-assert-expressions/db/schema.cds.tmpl
-  - name: javascript/08-input-validation-constraints/s02-assert-expressions/test/test.js
-  - name: javascript/08-input-validation-constraints/s02-assert-expressions/db/schema.cds
-  - name: javascript/08-input-validation-constraints/s01-declarative-annotations/db/schema.cds
-  - name: javascript/09-actions-functions/s01-bound-action/test/test.js
-  - name: typescript/09-actions-functions/s02-params-and-functions/test/test.js
-  - name: javascript/09-actions-functions/s01-bound-action/db/schema.cds
-  - name: javascript/09-actions-functions/s01-bound-action/db/schema.cds.tmpl
-  - name: javascript/09-actions-functions/s02-params-and-functions/db/schema.cds
-  - name: javascript/09-actions-functions/s02-params-and-functions/db/schema.cds.tmpl
-  - name: javascript/09-actions-functions/s01-bound-action/srv/maintenance-service.js
-  - name: javascript/09-actions-functions/s01-bound-action/srv/maintenance-service.js.tmpl
-  - name: typescript/09-actions-functions/s01-bound-action/srv/maintenance-service.ts.tmpl
-  - name: javascript/09-actions-functions/s02-params-and-functions/test/test.js
-  - name: typescript/09-actions-functions/s01-bound-action/test/test.js
-  - name: javascript/09-actions-functions/s02-params-and-functions/srv/maintenance-service.js
-  - name: javascript/09-actions-functions/s02-params-and-functions/srv/maintenance-service.cds.tmpl
-  - name: javascript/09-actions-functions/s02-params-and-functions/srv/maintenance-service.js.tmpl
-  - name: javascript/09-actions-functions/s02-params-and-functions/srv/maintenance-service.cds
-  - name: typescript/09-actions-functions/s02-params-and-functions/srv/maintenance-service.ts.tmpl
-  - name: typescript/09-actions-functions/s01-bound-action/db/schema.cds
-  - name: typescript/09-actions-functions/s01-bound-action/db/schema.cds.tmpl
-  - name: typescript/09-actions-functions/s02-params-and-functions/srv/maintenance-service.cds.tmpl
-  - name: typescript/09-actions-functions/s02-params-and-functions/srv/maintenance-service.ts
-  - name: typescript/09-actions-functions/s02-params-and-functions/srv/maintenance-service.cds
-  - name: typescript/09-actions-functions/s01-bound-action/srv/maintenance-service.ts
-  - name: typescript/09-actions-functions/s02-params-and-functions/db/schema.cds
-  - name: typescript/09-actions-functions/s02-params-and-functions/db/schema.cds.tmpl
 yaml_version: 5
