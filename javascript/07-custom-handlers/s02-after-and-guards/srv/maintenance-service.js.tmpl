@@ -1,0 +1,29 @@
+const cds = require('@sap/cds');
+
+class MaintenanceService extends cds.ApplicationService {
+  async init() {
+
+    // (from the previous stage) default the order number on new work orders
+    this.before('CREATE', 'WorkOrder', (req) => {
+      if (!req.data.orderNo) req.data.orderNo = 'WO-' + Date.now();
+    });
+
+    // Fill the virtual openWorkOrders count after each Equipment is read.
+    [[PH:register an AFTER READ handler on Equipment that sets each row's openWorkOrders to the number of its work orders]]this.after('READ', 'Equipment', async (rows) => {
+      for (const row of Array.isArray(rows) ? rows : [rows]) {
+        if (!row) continue;
+        const wos = await SELECT.from('assetcare.WorkOrder').where({ equipment_ID: row.ID });
+        row.openWorkOrders = wos.length;
+      }
+    })[[/PH]];
+
+    // Refuse any write that would drive a spare part's stock below zero.
+    [[PH:register a BEFORE CREATE/UPDATE handler on SparePart that rejects a negative stock value]]this.before(['CREATE', 'UPDATE'], 'SparePart', (req) => {
+      if (req.data.stock != null && req.data.stock < 0) req.reject(400, 'Stock cannot be negative');
+    })[[/PH]];
+
+    await super.init();
+  }
+}
+
+module.exports = MaintenanceService;

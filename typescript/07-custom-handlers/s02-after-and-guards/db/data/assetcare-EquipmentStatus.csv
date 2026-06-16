@@ -1,0 +1,4 @@
+code,name,descr
+OP,Operational,Equipment is running normally
+DN,Down,Equipment is not operational
+DC,Decommissioned,Equipment has been retired

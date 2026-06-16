@@ -1,3 +1,6 @@
-custom_name: Custom actions and functions
+type: framework
+custom_name: "Custom actions and functions"
 content:
-  - s01-overview
+  - s01-bound-action
+  - s02-params-and-functions
+is_template_based: false

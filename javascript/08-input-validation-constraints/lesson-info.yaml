@@ -1,3 +1,6 @@
-custom_name: Input validation and declarative constraints
+type: framework
+custom_name: "Input validation and declarative constraints"
 content:
-  - s01-overview
+  - s01-declarative-annotations
+  - s02-assert-expressions
+is_template_based: false

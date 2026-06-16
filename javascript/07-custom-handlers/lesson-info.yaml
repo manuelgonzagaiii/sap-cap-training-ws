@@ -1,3 +1,6 @@
+type: framework
 custom_name: "Custom business logic: event handlers"
 content:
-  - s01-overview
+  - s01-before-defaults
+  - s02-after-and-guards
+is_template_based: false

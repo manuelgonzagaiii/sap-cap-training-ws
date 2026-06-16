@@ -1,0 +1,25 @@
+const cds = require('@sap/cds');
+const { SELECT, INSERT, UPDATE, DELETE } = cds.ql;
+
+// --- reads + writes from previous stages ---
+function allEquipment() { return SELECT.from('assetcare.Equipment'); }
+function downEquipment() { return SELECT.from('assetcare.Equipment').where({ status_code: 'DN' }); }
+function sparePartById(id) { return SELECT.one.from('assetcare.SparePart').where({ ID: id }); }
+function addSparePart(part) { return INSERT.into('assetcare.SparePart').entries(part); }
+function restock(id, qty) { return UPDATE('assetcare.SparePart').set('stock +=', qty).where({ ID: id }); }
+function scrapEquipment(id) { return DELETE.from('assetcare.Equipment').where({ ID: id }); }
+
+/**
+ * Create a work order together with its line items in ONE deep insert. The nested `items`
+ * array becomes WorkOrderItem rows, linked to the new work order automatically - CAP
+ * generates the keys and the parent foreign keys for you.
+ */
+function createWorkOrder(orderNo, equipmentId, items) {
+  return [[PH:a deep INSERT into WorkOrder whose entries include orderNo, equipment_ID and the nested items array]]INSERT.into('assetcare.WorkOrder').entries({ orderNo, equipment_ID: equipmentId, items })[[/PH]];
+}
+
+module.exports = {
+  allEquipment, downEquipment, sparePartById,
+  addSparePart, restock, scrapEquipment,
+  createWorkOrder,
+};
