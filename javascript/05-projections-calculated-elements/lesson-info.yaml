@@ -1,3 +1,7 @@
+type: framework
 custom_name: "Projections, calculated and virtual elements"
 content:
-  - s01-overview
+  - s01-calculated-on-read
+  - s02-stored-and-assoc
+  - s03-virtual-and-projections
+is_template_based: false

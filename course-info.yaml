@@ -39,4 +39,14 @@ additional_files:
   - name: javascript/04-associations-compositions/s02-work-order-composition/db/data/assetcare-Equipment.csv
   - name: javascript/04-associations-compositions/s03-deep-reads/db/schema.cds
   - name: javascript/04-associations-compositions/s01-associations/db/schema.cds
+  - name: javascript/05-projections-calculated-elements/s01-calculated-on-read/test/test.js
+  - name: javascript/05-projections-calculated-elements/s01-calculated-on-read/db/schema.cds.tmpl
+  - name: javascript/05-projections-calculated-elements/s02-stored-and-assoc/db/schema.cds.tmpl
+  - name: javascript/05-projections-calculated-elements/s02-stored-and-assoc/test/test.js
+  - name: javascript/05-projections-calculated-elements/s03-virtual-and-projections/srv/maintenance-service.cds.tmpl
+  - name: javascript/05-projections-calculated-elements/s03-virtual-and-projections/test/test.js
+  - name: javascript/05-projections-calculated-elements/s03-virtual-and-projections/srv/maintenance-service.cds
+  - name: javascript/05-projections-calculated-elements/s02-stored-and-assoc/db/schema.cds
+  - name: javascript/05-projections-calculated-elements/s01-calculated-on-read/db/schema.cds
+  - name: javascript/05-projections-calculated-elements/s03-virtual-and-projections/db/schema.cds
 yaml_version: 5

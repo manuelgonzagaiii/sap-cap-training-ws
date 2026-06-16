@@ -1,0 +1,45 @@
+namespace assetcare;
+using { cuid, managed, Currency } from '@sap/cds/common';
+
+entity Equipment : cuid, managed {
+  tag          : String;
+  model        : String;
+  serialNo     : String;
+  status       : Association to EquipmentStatus;
+  manufacturer : Association to Manufacturer;
+  workOrders   : Association to many WorkOrder on workOrders.equipment = $self;
+  displayName  : String = tag || ' - ' || model;
+}
+
+entity Manufacturer : cuid, managed {
+  name       : String;
+  country    : String;
+  equipments : Association to many Equipment on equipments.manufacturer = $self;
+}
+
+entity SparePart : cuid, managed {
+  partNo   : String;
+  name     : String;
+  stock    : Integer;
+  price    : Decimal;
+  currency : Currency;
+  inventoryValue : Decimal = stock * price stored;
+}
+
+entity WorkOrder : cuid, managed {
+  orderNo     : String;
+  description : String;
+  equipment   : Association to Equipment;
+  items       : Composition of many WorkOrderItem on items.parent = $self;
+}
+
+entity WorkOrderItem : cuid {
+  parent   : Association to WorkOrder;
+  part     : Association to SparePart;
+  quantity : Integer;
+  lineTotal : Decimal = quantity * part.price;
+}
+
+entity EquipmentStatus : sap.common.CodeList {
+  key code : String(20);
+}
