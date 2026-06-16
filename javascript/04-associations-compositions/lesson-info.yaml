@@ -1,3 +1,7 @@
-custom_name: Associations and compositions
+type: framework
+custom_name: "Associations and compositions"
 content:
-  - s01-overview
+  - s01-associations
+  - s02-work-order-composition
+  - s03-deep-reads
+is_template_based: false

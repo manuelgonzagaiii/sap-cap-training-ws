@@ -25,4 +25,18 @@ tags:
 additional_files:
   - name: package.json
   - name: package-lock.json
+  - name: javascript/04-associations-compositions/s02-work-order-composition/db/schema.cds.tmpl
+  - name: javascript/04-associations-compositions/s02-work-order-composition/srv/maintenance-service.cds.tmpl
+  - name: javascript/04-associations-compositions/s02-work-order-composition/test/test.js
+  - name: javascript/04-associations-compositions/s03-deep-reads/db/schema.cds.tmpl
+  - name: javascript/04-associations-compositions/s03-deep-reads/srv/maintenance-service.cds
+  - name: javascript/04-associations-compositions/s03-deep-reads/test/test.js
+  - name: javascript/04-associations-compositions/s03-deep-reads/db/data/assetcare-WorkOrder.csv
+  - name: javascript/04-associations-compositions/s03-deep-reads/db/data/assetcare-WorkOrderItem.csv
+  - name: javascript/04-associations-compositions/s02-work-order-composition/db/schema.cds
+  - name: javascript/04-associations-compositions/s03-deep-reads/db/data/assetcare-Equipment.csv
+  - name: javascript/04-associations-compositions/s02-work-order-composition/srv/maintenance-service.cds
+  - name: javascript/04-associations-compositions/s02-work-order-composition/db/data/assetcare-Equipment.csv
+  - name: javascript/04-associations-compositions/s03-deep-reads/db/schema.cds
+  - name: javascript/04-associations-compositions/s01-associations/db/schema.cds
 yaml_version: 5

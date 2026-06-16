@@ -1,0 +1,28 @@
+namespace assetcare;
+using { cuid, managed, Currency } from '@sap/cds/common';
+
+entity Equipment : cuid, managed {
+  tag          : String;
+  model        : String;
+  serialNo     : String;
+  status       : Association to EquipmentStatus;
+  [[PH:a managed to-one association from Equipment to its Manufacturer]]manufacturer : Association to Manufacturer[[/PH]];
+}
+
+entity Manufacturer : cuid, managed {
+  name       : String;
+  country    : String;
+  [[PH:the reverse to-many - all Equipment of this Manufacturer, via a backlink on $self]]equipments : Association to many Equipment on equipments.manufacturer = $self[[/PH]];
+}
+
+entity SparePart : cuid, managed {
+  partNo   : String;
+  name     : String;
+  stock    : Integer;
+  price    : Decimal;
+  currency : Currency;
+}
+
+entity EquipmentStatus : sap.common.CodeList {
+  key code : String(20);
+}
