@@ -1,0 +1,11 @@
+# Local PostgreSQL for development and testing. This is the file `cds add postgres`
+# generates for you. Start the database with:
+#
+#   docker compose -f pg.yaml up -d
+#
+services:
+  db:
+    image: postgres:alpine
+    environment: { POSTGRES_PASSWORD: postgres }
+    ports: [ '5432:5432' ]
+    restart: always

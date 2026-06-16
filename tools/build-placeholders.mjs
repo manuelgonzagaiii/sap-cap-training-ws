@@ -63,10 +63,17 @@ function parseTemplate(text) {
   return { clean, placeholders };
 }
 
+// Skip VCS/IDE/marker noise, but DO descend into legitimate config dotfiles such as
+// .cdsrc.json / .env that can be part of a task.
+const SKIP_WALK = new Set([
+  ".git", ".idea", ".claude", ".junie", "node_modules", ".DS_Store",
+  ".scaffold-generated", ".populated",
+]);
+
 function walk(dir) {
   const out = [];
   for (const name of fs.readdirSync(dir)) {
-    if (name === "node_modules" || name.startsWith(".")) continue;
+    if (SKIP_WALK.has(name)) continue;
     const p = path.join(dir, name);
     const st = fs.statSync(p);
     if (st.isDirectory()) out.push(...walk(p));

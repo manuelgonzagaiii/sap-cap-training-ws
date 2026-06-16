@@ -1,0 +1,13 @@
+{
+  "requires": {
+    "db": {
+      "[development]": {
+        "kind": "sqlite",
+        "credentials": { "url": "db.sqlite" }
+      },
+      "[production]": {
+        "kind": [[PH:the production database kind - "postgres", served by @cap-js/postgres]]"postgres"[[/PH]]
+      }
+    }
+  }
+}

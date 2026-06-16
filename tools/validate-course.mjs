@@ -27,6 +27,18 @@ const warn = (m) => warnings.push(m);
 const exists = (p) => fs.existsSync(p);
 const read = (p) => fs.readFileSync(p, "utf8");
 
+const SKIP_WALK = new Set([".git", ".idea", ".claude", ".junie", "node_modules", ".DS_Store"]);
+function findTmpls(dir) {
+  const out = [];
+  for (const name of fs.readdirSync(dir)) {
+    if (SKIP_WALK.has(name)) continue;
+    const p = path.join(dir, name);
+    if (fs.statSync(p).isDirectory()) out.push(...findTmpls(p));
+    else if (p.endsWith(".tmpl")) out.push(p);
+  }
+  return out;
+}
+
 function contentList(text) {
   // items under a top-level `content:` key
   const lines = text.split(/\r?\n/);
@@ -73,8 +85,11 @@ function checkTask(taskDir) {
   if (type === "theory" && !declared.includes("task.md")) err(`theory task must declare task.md: ${path.relative(ROOT, taskDir)}`);
   if (type === "edu" && !declared.some((n) => /test/.test(n))) err(`edu task must declare a test file: ${path.relative(ROOT, taskDir)}`);
 
-  for (const name of fs.readdirSync(taskDir)) {
-    if (name.endsWith(".tmpl")) warn(`author-only .tmpl present (not shipped): ${path.relative(ROOT, taskDir)}/${name}`);
+  // A .tmpl is author-only source; what matters is that its generated file exists
+  // (i.e. build-placeholders was run after editing the template).
+  for (const tmpl of findTmpls(taskDir)) {
+    const generated = tmpl.slice(0, -".tmpl".length);
+    if (!exists(generated)) warn(`.tmpl has no generated file - run build-placeholders: ${path.relative(ROOT, tmpl)}`);
   }
   return type;
 }

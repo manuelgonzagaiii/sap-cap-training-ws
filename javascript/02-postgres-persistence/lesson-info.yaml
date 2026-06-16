@@ -1,3 +1,7 @@
-custom_name: Local PostgreSQL persistence
+type: framework
+custom_name: "Local PostgreSQL persistence"
 content:
-  - s01-overview
+  - s01-seed-data
+  - s02-configure-database
+  - s03-postgres-deploy
+is_template_based: false
