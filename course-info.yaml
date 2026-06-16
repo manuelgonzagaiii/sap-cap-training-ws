@@ -71,6 +71,28 @@ additional_files:
   - name: typescript/06-cql-queries/s03-deep-and-tx/tsconfig.json
   - name: typescript/06-cql-queries/s03-deep-and-tx/queries.ts
   - name: typescript/00-typescript-setup/s01-typescript-config/tsconfig.json
+  - name: javascript/06-cql-queries/s02-writes/queries.js.tmpl
+  - name: javascript/06-cql-queries/s02-writes/test/test.js
+  - name: javascript/06-cql-queries/s03-deep-and-tx/queries.js.tmpl
+  - name: javascript/06-cql-queries/s03-deep-and-tx/test/test.js
+  - name: javascript/06-cql-queries/s01-reads/queries.js
+  - name: javascript/06-cql-queries/s03-deep-and-tx/queries.js
+  - name: javascript/06-cql-queries/s02-writes/queries.js
+  - name: typescript/00-typescript-setup/s01-typescript-config/tsconfig.json.tmpl
+  - name: typescript/00-typescript-setup/s01-typescript-config/test/test.js
+  - name: typescript/06-cql-queries/s01-reads/queries.ts.tmpl
+  - name: typescript/06-cql-queries/s01-reads/test/test.js
+  - name: typescript/06-cql-queries/s02-writes/queries.ts.tmpl
+  - name: typescript/06-cql-queries/s02-writes/test/test.js
+  - name: typescript/06-cql-queries/s03-deep-and-tx/queries.ts.tmpl
+  - name: typescript/06-cql-queries/s03-deep-and-tx/test/test.js
+  - name: typescript/06-cql-queries/s02-writes/tsconfig.json
+  - name: typescript/06-cql-queries/s02-writes/queries.ts
+  - name: typescript/06-cql-queries/s01-reads/tsconfig.json
+  - name: typescript/06-cql-queries/s01-reads/queries.ts
+  - name: typescript/06-cql-queries/s03-deep-and-tx/tsconfig.json
+  - name: typescript/06-cql-queries/s03-deep-and-tx/queries.ts
+  - name: typescript/00-typescript-setup/s01-typescript-config/tsconfig.json
   - name: javascript/07-custom-handlers/s01-before-defaults/srv/maintenance-service.js.tmpl
   - name: javascript/07-custom-handlers/s01-before-defaults/test/test.js
   - name: javascript/07-custom-handlers/s02-after-and-guards/srv/maintenance-service.js.tmpl
