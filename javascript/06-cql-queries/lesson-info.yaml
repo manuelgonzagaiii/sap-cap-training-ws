@@ -1,3 +1,7 @@
-custom_name: Querying with CQL and cds.ql
+type: framework
+custom_name: "Querying with CQL and cds.ql"
 content:
-  - s01-overview
+  - s01-reads
+  - s02-writes
+  - s03-deep-and-tx
+is_template_based: false

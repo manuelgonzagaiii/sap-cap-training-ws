@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "esModuleInterop": true,
+    "strict": true,
+    "skipLibCheck": true,
+    "allowJs": true,
+    "paths": {
+      "@sap/cds": [[PH:point @sap/cds at the CAP type definitions package, @cap-js/cds-types]]["./node_modules/@cap-js/cds-types"][[/PH]],
+      "#cds-models/*": [[PH:map the #cds-models alias to the generated @cds-models folder]]["./@cds-models/*"][[/PH]]
+    }
+  }
+}

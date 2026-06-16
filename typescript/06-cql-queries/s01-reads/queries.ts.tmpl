@@ -1,0 +1,19 @@
+// AssetCare query helpers (TypeScript). Each function BUILDS a cds.ql query and returns it;
+// you run them yourself in the cds REPL. Building and running are separate steps in CAP.
+import cds from '@sap/cds';
+const { SELECT } = cds.ql;
+
+/** All equipment. */
+export function allEquipment() {
+  return [[PH:a SELECT reading from the assetcare.Equipment entity]]SELECT.from('assetcare.Equipment')[[/PH]];
+}
+
+/** Only equipment that is currently down (status code 'DN'). */
+export function downEquipment() {
+  return [[PH:a SELECT on Equipment filtered to status_code 'DN']]SELECT.from('assetcare.Equipment').where({ status_code: 'DN' })[[/PH]];
+}
+
+/** The single spare part with the given ID. */
+export function sparePartById(id: string) {
+  return [[PH:a SELECT returning the one SparePart whose ID matches id]]SELECT.one.from('assetcare.SparePart').where({ ID: id })[[/PH]];
+}

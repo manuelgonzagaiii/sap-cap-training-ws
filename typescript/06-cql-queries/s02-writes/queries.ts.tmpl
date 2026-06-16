@@ -1,0 +1,24 @@
+import cds from '@sap/cds';
+const { SELECT, INSERT, UPDATE, DELETE } = cds.ql;
+
+// --- reads (from the previous stage) ---
+export function allEquipment() { return SELECT.from('assetcare.Equipment'); }
+export function downEquipment() { return SELECT.from('assetcare.Equipment').where({ status_code: 'DN' }); }
+export function sparePartById(id: string) { return SELECT.one.from('assetcare.SparePart').where({ ID: id }); }
+
+// --- writes ---
+
+/** Add a new spare part. */
+export function addSparePart(part: Record<string, any>) {
+  return [[PH:an INSERT that adds the given part into assetcare.SparePart]]INSERT.into('assetcare.SparePart').entries(part)[[/PH]];
+}
+
+/** Increase a spare part's stock by qty (atomic increment). */
+export function restock(id: string, qty: number) {
+  return [[PH:an UPDATE on SparePart that adds qty to stock for the row with this ID]]UPDATE('assetcare.SparePart').set('stock +=', qty).where({ ID: id })[[/PH]];
+}
+
+/** Remove an equipment record. */
+export function scrapEquipment(id: string) {
+  return [[PH:a DELETE removing the Equipment row with this ID]]DELETE.from('assetcare.Equipment').where({ ID: id })[[/PH]];
+}

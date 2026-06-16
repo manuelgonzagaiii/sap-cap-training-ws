@@ -1,0 +1,25 @@
+using { assetcare } from '../db/schema';
+
+service MaintenanceService {
+
+  // The Equipment projection gains a virtual element: not stored, not computed by the model -
+  // a placeholder a custom handler will fill at runtime (we wire that up in Lesson 7).
+  entity Equipment as projection on assetcare.Equipment {
+    *,
+    virtual openWorkOrders : Integer
+  };
+
+  entity Manufacturer    as projection on assetcare.Manufacturer;
+  entity SparePart       as projection on assetcare.SparePart;
+  entity EquipmentStatus as projection on assetcare.EquipmentStatus;
+  entity WorkOrder       as projection on assetcare.WorkOrder;
+
+  // A lean, flattened read model for list pages: only the columns a list needs, with the
+  // related equipment's tag pulled in as a plain column via a path expression.
+  entity WorkOrderList as projection on assetcare.WorkOrder {
+    ID,
+    orderNo,
+    description,
+    equipment.tag as equipmentTag
+  };
+}
